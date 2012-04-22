@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html>
+    
+    <head>
+        <meta charset="UTF-8" />
+        <title>TM Markdown Editor</title>
+        
+        <style>
+            
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                -o-box-sizing: border-box;
+                box-sizing: border-box;
+                font-family: "Meiryo", Arial, Helvetica, sans-serif;
+                line-height: 1.5em;
+            }
+            
+            body {
+                margin: 0px;
+                padding: 0px;
+                font-size: 12px;
+            }
+            
+            header {
+                margin: 0px;
+                padding: 5px 20px;
+                background-color: #eee;
+                box-shadow: 0px 0px 4px 0px #aaa;
+            }
+            
+            header h1 {
+                color: #444444;
+                text-shadow: 2px 2px 2px #aaa;
+            }
+            
+            #contents {
+                margin: 20px 10px;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -o-box;
+                display: box;
+            }
+            
+            #contents>* {
+                width: 50%;
+                padding: 10px;
+            }
+            
+            textarea {
+                width: 100%;
+            }
+            
+            footer {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                margin: 0px;
+                padding: 10px 20px;
+                background-color: #eee;
+                box-shadow: 0px 0px 4px 0px #aaa;
+                text-align: center;
+            }
+            
+        </style>
+        
+        <script src="https://raw.github.com/evilstreak/markdown-js/master/lib/markdown.js"></script>
+        <script src="https://raw.github.com/phi1618/formobserver.tm.js/master/src/formobserver.tm.js"></script>
+        <script>
+            var $id = function(id) { return document.getElementById(id); };
+            
+            var toHTML = function() {
+                var eSrc    = $id("src");
+                var eDst    = $id("dst");
+                var markdownText = eSrc.value;
+                var htmlText     = markdown.toHTML(markdownText);
+                
+                eDst.value = htmlText;
+            };
+            
+            window.onload = function() {
+                tm.FormObserver.observeAll();
+                
+                $id("src").onchange = toHTML;
+                
+                // 一度実行しておく
+                toHTML();
+            };
+        </script>
+        
+    </head>
+    
+    <body>
+        <header>
+            <h1>TM Markdown Editor</h1>
+            <p>
+                シンプルなマークダウンエディタです.
+            </p>
+        </header>
+        
+        <div id="contents">
+            
+            <section>
+                <h2>INPUT</h2>
+                <p>
+                    Markdown
+                </p>
+                <form name="mainForm">
+                    <p>
+                        <textarea id="src" cols="32" rows="24" class="tm-form-observer">
+# TM Markdown Editor
+シンプルなマークダウンエディタです.
+</textarea>
+                    </p>
+                </form>
+            </section>
+            
+            <section>
+                <h2>OUTPUT</h2>
+                <p>
+                    HTML
+                </p>
+                <p>
+                    <textarea id="dst" cols="32" rows="24"></textarea>
+                </p>
+            </section>
+            
+        </div>
+        
+        <footer>
+            <p>
+                <a href="http://tmlife.net">Home</a>
+            </p>
+        </footer>
+    </body>
+    
+</html>
