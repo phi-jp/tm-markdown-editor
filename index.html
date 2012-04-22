@@ -28,24 +28,26 @@
                 <p>
                     Markdown
                 </p>
-                <form name="mainForm">
-                    <p>
-                        <textarea id="src" cols="32" rows="24" class="tm-form-observer">
+                <p>
+                    <textarea id="src" cols="32" rows="24" class="tm-form-observer">
 # TM Markdown Editor
 シンプルなマークダウンエディタです.
 </textarea>
-                    </p>
-                </form>
+                </p>
             </section>
             
             <section>
                 <h2>OUTPUT</h2>
-                <p>
-                    HTML
-                </p>
-                <p>
+                <form name="modeForm">
+                    <p>
+                        <label><input type="radio" name="mode" value="html-field" checked />HTML</label>
+                        <label><input type="radio" name="mode" value="preview" />Preview</label>
+                    </p>
+                </form>
+                <p id="html-field">
                     <textarea id="dst" cols="32" rows="24"></textarea>
                 </p>
+                <iframe id="preview"></iframe>
             </section>
             
         </div>
